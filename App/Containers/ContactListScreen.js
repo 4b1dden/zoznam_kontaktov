@@ -1,52 +1,71 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Text, View, ListView, Button, Alert } from 'react-native'
+import { Text, View, RefreshControl } from 'react-native'
 import I18n from '../I18n/I18n'
 import PageHeader from '../Components/PageHeader'
-import api from '../Services/api'
-import constants from '../constants'
-import styles from './Styles/ContactListScreenStyle'
+import { store } from '../Redux/store'
+import UserRow from '../Components/UserRow'
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 class ContactListScreen extends Component {
     constructor(props) {
         super(props);
-    
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-          dataSource: ds.cloneWithRows(['row 1', 'row 2']),
-        };
+            ordersList: [],
+            loading: false
+        }
+
+        this.onButtonPressed.bind(this);
+        this.fetchData.bind(this);
+
+        store.subscribe(() => {
+            const orders = store.getState().orders;
+
+            this.setState({
+                ordersList: orders,
+                loading: false
+            });
+        });
+
+    }
+
+    fetchData() {
+        // refresh zmaze data o itemoch jednotlivych uzivatelov - v store zostane iba plain list uzivatelov
+        store.dispatch({type: "FETCH_ORDERS_REQUEST"});
+        this.setState({loading: true});
     }
 
     componentWillMount() {
-        api.get(constants.api.routes.contacts).then(resp => {
-            // console.log(resp.data.items);
-        })
+        this.fetchData();
     }
 
     onButtonPressed() {
-        console.log(this.props.orders);
+        console.log(this.state);
     }
 
     render() {
+        const { ordersList } = this.state;
         return (
             <View>
-                <PageHeader title={I18n.t("ORDERS")}/>
-                <Button onPress={this.onButtonPressed} title="press" />
-                <ListView 
-                    style={styles}
-                    dataSource={this.state.dataSource}
-                    renderRow={(data) => <View><Text>{data}</Text></View>} />
+                <PageHeader showAddButton={true} showBackButton={false} title={I18n.t("ORDERS")}/>
+                {
+                    ordersList ? 
+                        <ScrollView 
+                        refreshControl={
+                            <RefreshControl 
+                                refreshing={this.state.loading}
+                                onRefresh={this.fetchData.bind(this)}
+                            />
+                        }
+                        >
+                            {
+                                ordersList.map(user => <UserRow key={user.id} user={user} />)
+                            }
+                        </ScrollView> :
+                        <Text>"No orders list yet"</Text>
+                }
             </View>
-        )
+        );
     }
 }
 
-function mapStateToProps(state){
-    console.log('called mapstatetoprops')
-    console.log(state);
-    return {
-        orders: state.orders,
-    }
-}
-
-export default connect(mapStateToProps)(ContactListScreen);
+export default ContactListScreen;

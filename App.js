@@ -2,7 +2,8 @@ import React from 'react';
 import Expo, {Font} from 'expo';
 import { createAppContainer } from "react-navigation";
 import { Provider } from 'react-redux'
-import store from './App/Redux/store'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+import { store, persistor } from './App/Redux/store'
 import AppNavigator from './App/Navigation/AppNavigation';
 
 const AppContainer = createAppContainer(AppNavigator);
@@ -29,7 +30,9 @@ export default class App extends React.Component {
     if (!this.state.fontsAreLoading) {
       return (
         <Provider store={store}>
-          <AppContainer />
+          <PersistGate persistor={persistor}>
+            <AppContainer />
+          </PersistGate>
         </Provider>
       );
     }

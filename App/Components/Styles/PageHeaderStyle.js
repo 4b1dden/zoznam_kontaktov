@@ -1,11 +1,8 @@
 import { StyleSheet } from 'react-native'
 
-let textStyle = StyleSheet.create({
+export default StyleSheet.create({
     text: {
+        fontSize: 17,
         color: '#fff'
     }
 });
-
-export default {
-    textStyle
-}
