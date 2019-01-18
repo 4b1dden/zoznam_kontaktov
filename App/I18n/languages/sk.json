@@ -1,5 +1,9 @@
 {
     "ORDERS": "Objednávky",
     "NEW_CONTACT": "Pridať nový kontakt",
-    "PHONE_NUMBER": "Telefónne číslo"
+    "PHONE_NUMBER": "Telefónne číslo",
+    "FORM_NAME_PLACEHOLDER": "Vaše meno a priezvisko",
+    "FORM_PHONE_PLACEHOLDER": "Vaše telefónne číslo",
+    "ADD_NEW_ORDER": "Pridaj",
+    "FIELD_MUST_HAVE_AT_LEAST_5_CHARS": "Prosím, použite aspoň 5 znakov"
 }

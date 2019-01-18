@@ -1,5 +1,9 @@
 {
    "ORDERS": "Orders",
    "NEW_CONTACT": "Add New Contact",
-   "PHONE_NUMBER": "Phone Number"
+   "PHONE_NUMBER": "Phone Number",
+   "FORM_NAME_PLACEHOLDER": "First and Last name",
+   "FORM_PHONE_PLACEHOLDER": "Phone Number",
+   "ADD_NEW_ORDER": "Add",
+   "FIELD_MUST_HAVE_AT_LEAST_5_CHARS": "Please, use at least 5 characters for this field"
 }
