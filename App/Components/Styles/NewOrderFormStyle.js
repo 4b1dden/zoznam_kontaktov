@@ -1,7 +1,9 @@
-import { StyleSheet } from 'react-native'
+// @flow
+
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    submitBtn: {
-        paddingTop: 15
-    }
+  submitBtn: {
+    paddingTop: 15,
+  },
 });

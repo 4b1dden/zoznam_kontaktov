@@ -1,9 +1,11 @@
+// @flow
+
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import style from './Styles/OrdersListItemStyle'
 
-export default class OrdersListItem extends Component {
-    constructor(props) {
+export default class OrdersListItem extends Component<Props, State> {
+    constructor(props: Object) {
         super(props);
     }
 
@@ -17,3 +19,9 @@ export default class OrdersListItem extends Component {
         );
     }
 }
+
+type Props = {
+    item: Object
+}
+
+type State = {}

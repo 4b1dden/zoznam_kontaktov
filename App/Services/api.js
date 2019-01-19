@@ -1,8 +1,10 @@
-import { create } from 'apisauce'
-import constants from '../constants'
+// @flow
 
-let api = create({
-    baseURL: constants.api.baseUrl
+import { create } from 'apisauce';
+import constants from '../constants';
+
+const api = create({
+  baseURL: constants.api.baseUrl,
 });
 
 export default api;

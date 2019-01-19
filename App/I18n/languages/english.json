@@ -2,6 +2,7 @@
    "ORDERS": "Orders",
    "NEW_CONTACT": "Add New Contact",
    "PHONE_NUMBER": "Phone Number",
+   "PHONE_NUMBER_SHORT": "Phone",
    "FORM_NAME_PLACEHOLDER": "First and Last name",
    "FORM_PHONE_PLACEHOLDER": "Phone Number",
    "ADD_NEW_ORDER": "Add",

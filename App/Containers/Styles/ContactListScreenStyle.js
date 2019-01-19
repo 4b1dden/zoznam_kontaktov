@@ -1,10 +1,13 @@
-import { StyleSheet } from 'react-native'
+// @flow
+
+import { StyleSheet, Dimensions } from 'react-native';
+
+const desiredHeight = Dimensions.get('window').height - 70; // height of Header elem
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginTop: 20,
-    },
+  scrollView: {
+    height: desiredHeight,
+  },
 });
 
 export default styles;

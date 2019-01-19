@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import { Text, View, RefreshControl } from 'react-native'
 import I18n from '../I18n/I18n'
@@ -5,16 +7,16 @@ import PageHeader from '../Components/PageHeader'
 import { store } from '../Redux/store'
 import UserRow from '../Components/UserRow'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import style from './Styles/ContactListScreenStyle'
 
-class ContactListScreen extends Component {
-    constructor(props) {
+class ContactListScreen extends Component<Props, State> {
+    constructor(props: Object) {
         super(props);
         this.state = {
             ordersList: [],
             loading: false
         }
 
-        this.onButtonPressed.bind(this);
         this.fetchData.bind(this);
 
         store.subscribe(() => {
@@ -28,18 +30,14 @@ class ContactListScreen extends Component {
 
     }
 
-    fetchData() {
-        // refresh zmaze data o itemoch jednotlivych uzivatelov - v store zostane iba plain list uzivatelov
-        store.dispatch({type: "FETCH_ORDERS_REQUEST"});
-        this.setState({loading: true});
-    }
-
     componentWillMount() {
         this.fetchData();
     }
 
-    onButtonPressed() {
-        console.log(this.state);
+    fetchData() {
+        // refresh zmaze data o itemoch jednotlivych uzivatelov - v store zostane iba plain list uzivatelov
+        store.dispatch({type: "FETCH_ORDERS_REQUEST"});
+        this.setState({loading: true});
     }
 
     render() {
@@ -50,6 +48,7 @@ class ContactListScreen extends Component {
                 {
                     ordersList ? 
                         <ScrollView 
+                        style={style.scrollView}
                         refreshControl={
                             <RefreshControl 
                                 refreshing={this.state.loading}
@@ -58,7 +57,7 @@ class ContactListScreen extends Component {
                         }
                         >
                             {
-                                ordersList.map(user => <UserRow key={user.id} user={user} />)
+                                ordersList.map((user, index) => <UserRow key={user.id ? user.id : index} user={user} />)
                             }
                         </ScrollView> :
                         <Text>"No orders list yet"</Text>
@@ -66,6 +65,12 @@ class ContactListScreen extends Component {
             </View>
         );
     }
+}
+
+type Props = { }
+type State = {
+    ordersList: Array<Object>,
+    loading: boolean
 }
 
 export default ContactListScreen;

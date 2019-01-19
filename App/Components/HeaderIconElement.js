@@ -2,24 +2,24 @@
 
 import React, { Component } from 'react'
 import { View, TouchableHighlight } from 'react-native'
-import { Icon } from 'react-native-elements'
+import { Icon, Header } from 'react-native-elements'
 import { withNavigation } from 'react-navigation';
 
-class AddOrderIconElement extends Component<Props, State> {
+class HeaderIconElement extends Component<Props, State> {
     constructor(props) {
         super(props);
     }
 
     render () {
-        const { navigate } = this.props.navigation;
+        const { iconName } = this.props;
         const hitSlopValue = 25;
 
         return (
             <TouchableHighlight 
-                onPress={() => navigate("AddContactScreen")} 
+                onPress={this.props.onClick.bind(this)} 
                 hitSlop={{top: hitSlopValue, bottom: hitSlopValue, left: hitSlopValue, right: hitSlopValue}}>
                 <View>
-                    <Icon color="#fff" name="add" />
+                    <Icon color="#fff" name={iconName} />
                 </View>
             </TouchableHighlight>
         )
@@ -27,9 +27,11 @@ class AddOrderIconElement extends Component<Props, State> {
 }
 
 type Props = {
-    navigation: Object
+    navigation: Object,
+    iconName: string,
+    onClick: Function
 }
 
 type State = {}
 
-export default withNavigation(AddOrderIconElement);
+export default withNavigation(HeaderIconElement);

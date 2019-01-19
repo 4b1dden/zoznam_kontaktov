@@ -1,4 +1,6 @@
-import { createTypes } from 'reduxsauce'
+// @flow
+
+import { createTypes } from 'reduxsauce';
 
 export default createTypes(`
     FETCH_ORDERS_REQUEST
@@ -8,4 +10,8 @@ export default createTypes(`
     FETCH_SINGLE_CONTACT_REQUEST
     FETCH_SINGLE_CONTACT_SUCCESS
     FETCH_SINGLE_CONTACT_FAILURE
+
+    ADD_NEW_ORDER_REQUEST
+    ADD_NEW_ORDER_SUCCESS
+    ADD_NEW_ORDER_FAILURE
 `);

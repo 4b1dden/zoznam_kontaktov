@@ -1,9 +1,11 @@
+//@flow
+
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ActivityIndicator } from 'react-native'
 import OrdersListItem from './OrdersListItem'
 
-export default class OrdersList extends Component {
-    constructor(props) {
+export default class OrdersList extends Component<Props, State> {
+    constructor(props: Object) {
         super(props);
     }
 
@@ -14,9 +16,11 @@ export default class OrdersList extends Component {
             <View>
                 {
                     items ? 
-                        items.map(
-                            (item, index) => <OrdersListItem key={index} item={item} />
-                        )
+                        <View style={{flex: 1, flexDirection: 'column', height: 250}}>
+                            {items.map(
+                                (item, index) => <OrdersListItem key={index} item={item} />
+                            )}
+                        </View>
 // pre ucely zadania -> lorem je scrollview
 //                         <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tempus nulla ac sem suscipit, a placerat urna lacinia. Fusce scelerisque, dui aliquam placerat consectetur, urna sem pulvinar eros, at volutpat mi est vel libero. Sed sed mauris eget elit tincidunt venenatis. Donec pretium consequat enim, nec dignissim nisl maximus eu. Duis purus tellus, tincidunt ut vulputate nec, vulputate non nulla. In pulvinar enim ut nisi consequat bibendum. Cras fringilla odio vitae velit vulputate cursus. Duis vulputate ligula at efficitur gravida. In eu maximus nulla. Phasellus accumsan, dolor facilisis sagittis tempor, metus nisi porttitor lorem, non rutrum diam lacus in augue. Vivamus magna nunc, maximus eu egestas a, finibus sit amet nunc. In sit amet ipsum id justo interdum aliquet. Aliquam erat volutpat. Donec id ex luctus, tempus eros ut, mollis lacus. Nunc varius quam quis elit tincidunt, at semper diam semper. Maecenas facilisis ultrices enim, in consequat tortor tristique sed.
 // Cras rhoncus erat sit amet eros elementum bibendum quis vitae nunc. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur eu erat id augue lobortis pharetra nec sit amet est. Morbi magna nibh, facilisis non vestibulum ut, laoreet id lorem. In sed ipsum vitae metus sollicitudin egestas. Proin ipsum ante, feugiat non interdum non, varius imperdiet leo. Donec feugiat nibh sed libero mattis, ut laoreet mauris interdum.
@@ -25,9 +29,20 @@ export default class OrdersList extends Component {
 // Aliquam quis tortor mollis felis sagittis dictum vitae et lectus. Nunc dapibus ultrices dui, imperdiet scelerisque ex blandit sed. In dapibus scelerisque elit, in feugiat arcu condimentum sed. Quisque sed facilisis mi. In congue urna sed blandit imperdiet. Cras sit amet nisi nibh. Donec congue risus sem, eu pharetra metus sollicitudin vitae. Morbi vitae nisi sed purus malesuada mattis non quis ipsum. Vestibulum 
 //                         </Text> 
                         :
-                    <Text>Este ziadne</Text>
+                        <View style={{flex: 1, justifyContent: 'center', height: 500, flexDirection: 'row', justifyContent: 'space-around', padding: 10}}>
+                            <ActivityIndicator
+                                color="#0066cc"
+                             />
+                        </View>
+                   
                 }
             </View>
         );
     }
 }
+
+type Props = {
+    user: Object
+}
+
+type State = {}

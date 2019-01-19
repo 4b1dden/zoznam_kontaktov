@@ -1,19 +1,24 @@
+// @flow
+
 import React, { Component } from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, Button } from 'react-native'
 import PageHeader from '../Components/PageHeader'
 import { store } from '../Redux/store'
 import OrdersList from '../Components/OrdersList'
 import style from './Styles/SingleContactStyle'
 import SingleContactPhone from '../Components/SingleContactPhone'
 
-export default class SingleOrderScreen extends Component {
-    constructor(props) {
+export default class SingleOrderScreen extends Component <Props, State> {
+    unsubsribe: Function
+    state: Object
+
+    constructor(props: Object) {
         super(props);
 
         const { navigation } = this.props;
         
         this.state = {
-            user: navigation.getParam('user')
+            user: navigation.getParam('user'),
         };
 
         this.unsubsribe = store.subscribe(() => {
@@ -44,4 +49,13 @@ export default class SingleOrderScreen extends Component {
             </View>
         );
     }
+}
+
+type Props = {
+    navigation: Object
+}
+
+type State = {
+    user: Object,
+    unsubsribe: Function
 }
