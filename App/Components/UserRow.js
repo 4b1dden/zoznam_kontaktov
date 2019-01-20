@@ -26,9 +26,11 @@ class UserRow extends Component<Props, State> {
             <View>
                 <TouchableOpacity onPress={this._onPress.bind(this)}>
                     <View style={style.item}>
-                        <Image 
-                            style={style.profilePic}
-                            source={{uri: user.pictureUrl ? user.pictureUrl : this.state.profilePicPlaceholder}}></Image>
+                        <View style={style.profilePicWrapper}>
+                            <Image 
+                                style={style.profilePic}
+                                source={{uri: user.pictureUrl ? user.pictureUrl : this.state.profilePicPlaceholder}}></Image>
+                        </View>
                         <View>
                             <Text style={style.name}>{user.name}</Text>
                             <Text style={style.number}>{user.phone}</Text>

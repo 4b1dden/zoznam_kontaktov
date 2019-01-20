@@ -3,7 +3,6 @@
 import { StyleSheet } from 'react-native';
 
 const specs = {
-  height: 40,
   fontSize: 13,
   color: 'black',
 };
@@ -14,12 +13,11 @@ const style = StyleSheet.create({
   },
   itemName: {
     ...specs,
-    paddingLeft: 12,
+    textAlign: 'left',
   },
   itemQuantity: {
     ...specs,
-    textAlign: 'right',
-    paddingRight: 15,
+    textAlign: 'right'
   },
 });
 

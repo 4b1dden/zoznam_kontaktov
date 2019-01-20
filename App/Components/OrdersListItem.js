@@ -12,10 +12,20 @@ export default class OrdersListItem extends Component<Props, State> {
     render () {
         const { item } = this.props;
         return (
-            <View style={style.container}>
-                <Text style={style.itemName}>{item.name}</Text>
-                <Text style={style.itemQuantity}>{item.count}</Text>
+            <View style={{ height: 80, flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
+                <Text numberOfLines={1} style={{ flex: 1, textAlign: "left", paddingLeft: 20, fontWeight: 'bold' }}>
+                    {item.name}
+                </Text>
+                <Text style={{ textAlign: "right", paddingRight: 35 }}>{item.count}x</Text>
             </View>
+            // <View style={style.container}>
+            //     <Text>
+            //         {item.name}
+            //     </Text>
+            //     <Text style={{alignSelf: 'flex-end'}}>
+            //         {item.count}x
+            //     </Text>
+            // </View>
         );
     }
 }
